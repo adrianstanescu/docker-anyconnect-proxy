@@ -1,0 +1,18 @@
+version: '3'
+services:
+  anyconnectproxy:
+    build: .
+    environment:
+      - ANYCONNECT_SERVER=${ANYCONNECT_SERVER}
+      - ANYCONNECT_USERNAME=${ANYCONNECT_USERNAME}
+      - ANYCONNECT_PASSWORD=${ANYCONNECT_PASSWORD}
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    ports:
+      - 1080:1080
+    volumes:
+      - "./danted.conf:/etc/danted.conf"
+
